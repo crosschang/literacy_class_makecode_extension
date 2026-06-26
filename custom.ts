@@ -556,7 +556,7 @@ namespace mapadmin {
     /**
      * 특정날의 건축 수업을 시작합니다.
      */
-    //%blockId=start_build_class block="$p째 날의 건축 수업으로 이동"
+    //%blockId=start_build_class block="$n째 날의 건축 수업으로 이동"
     export function start_build_class(n: RoomNumber): void {
         if(n != 1 && n != 6){
             player.execute("function environment/start_build_class/"+n)
