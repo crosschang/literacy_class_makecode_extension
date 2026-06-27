@@ -212,9 +212,9 @@ function loadPlayerData(playerTable: PlayerData[]): boolean {
         }
     }
 
-    player.execute(
-        "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
-    )
+    //player.execute(
+        //"tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
+    //)
     return false
 }
 
@@ -253,7 +253,9 @@ function classification_test(): void {
 namespace classification {
 
     loadPlayerData(players)
-    player.execute("function quiz/class5/testing")
+    if (player_number != 0){
+        player.execute("function quiz/class5/testing")
+    }
 
     //% blockId=classification5_5 block="📢 : 광고/출처 모름"
     export function data5_5(): void {
