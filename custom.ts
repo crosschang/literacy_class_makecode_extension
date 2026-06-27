@@ -16,12 +16,12 @@ namespace DoorControl {
                 )
             } else {
                 player.execute(
-                "say 자기 위치에 맞는 이미지에 적힌 값으로만 적어주세요!"
+                "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_local\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
                 )
             }
         } else {
             player.execute(
-            "say 이미지에 적힌 값으로만 적어주세요!"
+            "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_number\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
             )
         }
     }
@@ -36,12 +36,12 @@ namespace DoorControl {
                 )
             } else {
                 player.execute(
-                "say 자기 위치에 맞는 이미지에 적힌 값으로만 적어주세요!"
+                "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_number\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
                 )
             }
         } else {
             player.execute(
-            "say 이미지에 적힌 값으로만 적어주세요!"
+            "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_local\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
             )
         }
     }
@@ -212,7 +212,9 @@ function loadPlayerData(playerTable: PlayerData[]): boolean {
         }
     }
 
-    player.say("§c앗! 지정된 플레이어를 찾지못했습니다.")
+    player.execute(
+        "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_player\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+    )
     return false
 }
 
@@ -532,7 +534,9 @@ namespace mapadmin {
             player.execute("tag " + "@s" + "[tag=map_admin] " + "add " + s)
             player.execute("tag " + "@s" + "[tag=map_admin] " + "add " + "door_open")
         }else{
-            player.say('§e이런! 해당 방은 존재하지 않습니다!')
+            player.execute(
+                "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_room\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+            )
         }
     }
     /**
@@ -543,7 +547,9 @@ namespace mapadmin {
         if(n != 1 && n != 7 && n != 8){
             player.execute("function environment/enter_examinations/"+n)
         }else{
-            player.say('§e이런! 해당 날의 수업은 작동시킬 것이 없습니다!')
+            player.execute(
+                "tellraw" + "@s" + "{ \"translate\":" + "\"say.can_not_active\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+            )
         }
     }
     /**
@@ -554,6 +560,13 @@ namespace mapadmin {
         player.execute("execute " + "@a" + "[tag=examination_" + p + "] ~ ~ ~ " +"function environment/exit_examination")
     }
     /**
+     * 전채 학생의 수업을 종료시킵니다.
+     */
+    //%blockId=end_class_all block="모든 학생의 수업 종료"
+    export function end_class_all(): void {
+        player.execute("execute " + "@a" + "[tag=!map_admin] ~ ~ ~ " +"function environment/exit_examination")
+    }
+    /**
      * 특정날의 건축 수업을 시작합니다.
      */
     //%blockId=start_build_class block="$n째 날의 건축 수업으로 이동"
@@ -561,11 +574,13 @@ namespace mapadmin {
         if(n != 1 && n != 6){
             player.execute("function environment/start_build_class/"+n)
         }else{
-            player.say('§e이런! 해당 날의 건축 수업은 없습니다!')
+            player.execute(
+                "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_build_room\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+            )
         }
     }
     /**
-     * 특정날의 건축 수업을 끝냅니다.
+     * 건축 수업을 끝냅니다.
      */
     //%blockId=end_build_class block="건축 수업 종료해서 시작지점으로 이동"
     export function end_build_class(): void {
