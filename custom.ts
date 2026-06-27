@@ -16,12 +16,12 @@ namespace DoorControl {
                 )
             } else {
                 player.execute(
-                "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_local\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.wrong_local\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
                 )
             }
         } else {
             player.execute(
-            "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_number\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
+            "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.wrong_number\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
             )
         }
     }
@@ -36,12 +36,12 @@ namespace DoorControl {
                 )
             } else {
                 player.execute(
-                "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_number\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.wrong_local\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
                 )
             }
         } else {
             player.execute(
-            "tellraw" + "@s" + "{ \"translate\":" + "\"say.wrong_local\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}"
+            "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.wrong_number\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
             )
         }
     }
@@ -213,7 +213,7 @@ function loadPlayerData(playerTable: PlayerData[]): boolean {
     }
 
     player.execute(
-        "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_player\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+        "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
     )
     return false
 }
@@ -535,7 +535,7 @@ namespace mapadmin {
             player.execute("tag " + "@s" + "[tag=map_admin] " + "add " + "door_open")
         }else{
             player.execute(
-                "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_room\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_room\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}" 
             )
         }
     }
@@ -548,7 +548,7 @@ namespace mapadmin {
             player.execute("function environment/enter_examinations/"+n)
         }else{
             player.execute(
-                "tellraw" + "@s" + "{ \"translate\":" + "\"say.can_not_active\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.can_not_active\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
             )
         }
     }
@@ -575,7 +575,7 @@ namespace mapadmin {
             player.execute("function environment/start_build_class/"+n)
         }else{
             player.execute(
-                "tellraw" + "@s" + "{ \"translate\":" + "\"say.no_find_build_room\"," + "\"with\":"+"{ \"rawtext\":"+"[{\"text\":"+"\n\"}]}}" 
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_build_room\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
             )
         }
     }
