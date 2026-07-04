@@ -605,4 +605,11 @@ namespace mapadmin {
     export function end_build_class(): void {
         player.execute("function environment/end_build_class/def")
     }
+    /**
+     * 맵 관리 makecode로 돌아갑니다
+     */
+    //%blockId=back_mapadmin block="맵 관리로 돌아가기"
+    export function back_mapadmin(): void{
+        player.execute("tag "+"@s "+"add "+"_sys_mapadmin_4x8p2")
+    }
 }
