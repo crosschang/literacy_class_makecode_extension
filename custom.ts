@@ -86,19 +86,19 @@ namespace CheckList {
      * 입력한 숫자에 맞는 검사문장을 가져옵니다.
      * @param 번호 문장 번호, eg: 1
      */
-    //% blockId=GetCheckList_sen block="$num 의 문장 가져오기"
-    export function GetCheckList_Sentence(num: number): string {
-        if (num < 1 || num > 검사문장모음.length) {
+    //% blockId=GetCheckList_sen block="검사할 $list 리스트의 $num 의 데이터 가져오기"
+    export function GetCheckList_Sentence(list: string,num: number): string {
+        if (num < 1 || num > list.length) {
             return ""
         }
-        return 검사문장모음[num - 1]
+        return list[num - 1]
     }
     /**
      * 검사할 문장에 개인 정보 단서가 있는지 확인합니다.
      */
-    //% blockId=GetCheckList_hkw block="문장 $s 안에 단서 $k 가 들어 있나요?"
-    export function GetCheckList_Haskeyword(s: string, k: string): boolean {
-        return s.includes(k)
+    //% blockId=GetCheckList_hkw block="$list 문장 안에 단서 $word 가 들어 있나요?"
+    export function GetCheckList_Haskeyword(list: string, word: string): boolean {
+        return list.includes(word)
     }
 }
 
