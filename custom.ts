@@ -75,11 +75,11 @@ namespace CheckList {
         "문장들을 번호대로 나누니까 좋아보여"
     ]
     /**
-     * 검사할 문장 개수를 가져옵니다.
+     * 검사 할 특정 리스트의 데이터 개수를 가져옵니다.
      */
-    //% blockId=GetCheckList_len block="검사할 문장 개수"
-    export function GetCheckList_Length(): number {
-        return 검사문장모음.length;
+    //% blockId=GetCheckList_len block="검사할 $list 리스트의 데이터 개수"
+    export function GetCheckList_Length(list: string): number {
+        return list.length;
     }
 
     /**
@@ -92,6 +92,13 @@ namespace CheckList {
             return ""
         }
         return 검사문장모음[num - 1]
+    }
+    /**
+     * 검사할 문장에 개인 정보 단서가 있는지 확인합니다.
+     */
+    //% blockId=GetCheckList_hkw block="문장 $s 안에 단서 $k 가 들어 있나요?"
+    export function GetCheckList_Haskeyword(s: string, k: string): boolean {
+        return s.includes(k)
     }
 }
 
