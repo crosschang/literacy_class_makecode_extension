@@ -101,9 +101,14 @@ namespace CheckList {
     /**
      * 검사할 문장에 개인 정보 단서가 있는지 확인합니다.
      */
-    //% blockId=GetCheckList_hkw block="$list 문장 안에 단서 $word 가 들어 있나요?"
-    export function GetCheckList_Haskeyword(list: string, word: string): boolean {
-        return list.includes(word)
+    //% blockId=GetCheckList_hkw block="$string 문장 안에 단서 $word 가 들어 있나요?"
+    export function GetCheckList_Haskeyword(string: string, word: string): boolean {
+
+        if (word == "") {
+            return false
+        }
+
+        return string.includes(word)
     }
 }
 
