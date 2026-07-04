@@ -56,9 +56,7 @@ namespace CheckList {
 
     player.execute("function quiz/class2/testing")
 
-    let 검사문장모음: string[] = []
-
-    검사문장모음 = [
+    let 검사문장모음: string[] = [
         "나는 초등학생 3학년이야",
         "나는 마인초등학교에 다니고 있어",
         "오늘은 개인정보 보호를 배울 수 있어서 좋아",
@@ -74,6 +72,13 @@ namespace CheckList {
         "선생님이 오늘 알려주는 코딩은 나한테 도움이 되",
         "문장들을 번호대로 나누니까 좋아보여"
     ]
+    /**
+     * 검사 할 특정 리스트의 데이터 개수를 가져옵니다.
+     */
+    //% blockId=GetCheckList_gd block="검사문장모음" 
+    export function GetCheckList_Getdata(): string[]{
+        return 검사문장모음 
+    }
     /**
      * 검사 할 특정 리스트의 데이터 개수를 가져옵니다.
      */
