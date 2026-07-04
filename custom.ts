@@ -78,7 +78,7 @@ namespace CheckList {
      * 검사 할 특정 리스트의 데이터 개수를 가져옵니다.
      */
     //% blockId=GetCheckList_len block="검사할 $list 리스트의 데이터 개수"
-    export function GetCheckList_Length(list: string): number {
+    export function GetCheckList_Length(list: string[]): number {
         return list.length;
     }
 
@@ -87,7 +87,7 @@ namespace CheckList {
      * @param 번호 문장 번호, eg: 1
      */
     //% blockId=GetCheckList_sen block="검사할 $list 리스트의 $num 의 데이터 가져오기"
-    export function GetCheckList_Sentence(list: string,num: number): string {
+    export function GetCheckList_Sentence(list: string[],num: number): string {
         if (num < 1 || num > list.length) {
             return ""
         }
