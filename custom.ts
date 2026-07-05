@@ -54,7 +54,8 @@ namespace DoorControl {
 //% weight=100 color=#0fbc11 icon="\uf2bb" block="검사할문장리스트"
 namespace CheckList {
 
-    player.execute("function quiz/class2/testing")
+
+    player.execute("execute "+"@s"+"[tag=day2] "+"~ ~ ~ "+"function quiz/class2/testing")
 
     let 검사문장모음: string[] = [
         "나는 초등학생 3학년이야",
@@ -229,9 +230,9 @@ function loadPlayerData(playerTable: PlayerData[]): boolean {
         }
     }
 
-    //player.execute(
-        //"tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
-    //)
+    player.execute(
+        "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
+    )
     return false
 }
 
@@ -269,8 +270,8 @@ function classification_test(): void {
 //% weight=100 color=#7B61FF block="정보 분류" icon="\uf002"
 namespace classification {
 
-    loadPlayerData(players)
-    if (player_number != 0){
+    if(player.execute("testfor "+"@s"+"[tag=day5]")){
+        loadPlayerData(players)
         player.execute("function quiz/class5/testing")
     }
 
