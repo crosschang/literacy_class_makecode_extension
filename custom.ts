@@ -517,6 +517,30 @@ enum Roomtype {
     Examination = 2
 }
 
+function is_online_player(s: string): boolean {
+    if (s.length == 0) {
+        return false
+    }
+
+    return mobs.execute(
+        mobs.playerByName(s),
+        pos(0, 0, 0),
+        "testfor @s"
+    )
+}
+
+function check_authorized(): boolean {
+    if (player.execute("testfor @s[tag=_sys_mapadmin_authorized]")) {
+        player.execute("tag @s add map_admin")
+        player.execute("tag @s remove _sys_mapadmin_authorized")
+        return true
+    } else if(player.execute("testfor @s[tag=map_admin]")) {
+        return true
+    }else{
+        return false
+    }
+}
+
 /**
  * Custom blocks
  */
@@ -525,8 +549,11 @@ namespace mapadmin {
     let class_number = ""
     //%blockId=task block="어떤 작업을 시행 하실건가요? "
     export function task(handler: () => void): void {
-        player.execute("tag " + "@s" + "[tag=!map_admin] "+"add "+"map_admin")
-        handler()
+        if (check_authorized()){
+            handler()
+        }else{
+            player.execute("tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_room\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}" )
+        }      
     }
     /**
     * 맵의 동작을 초기화 합니다.
@@ -612,5 +639,73 @@ namespace mapadmin {
     //%blockId=back_mapadmin block="맵 관리로 돌아가기"
     export function back_mapadmin(): void{
         player.execute("tag "+"@s "+"add "+"_sys_mapadmin_4x8p2")
+    }
+    /**
+     * 특정인에게 관리자 권한을 줍니다.
+     */
+    //%blockId=give_to_mapadmin block="$s에게 맵관리자 권한 주기"
+    export function give_to_mapadmin(s: string): void{
+        if(is_online_player(s)){
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "tag @s add _sys_mapadmin_4x8p2"
+            )
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "tag @s add _sys_mapadmin_authorized"
+            )
+            player.execute("op \""+s+"\"")
+        }else{
+            player.execute(
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
+            )  
+        }
+    }
+    /**
+     * 특정인에게 관리자 권한을 뺍니다.
+     */
+    //%blockId=take_to_mapadmin block="$s에게 맵관리자 권한 빼기"
+    export function take_to_mapadmin(s: string): void{
+        if(is_online_player(s)){
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "tag @s remove map_admin"
+            )
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "tag @s remove _sys_mapadmin_authorized"
+            )
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "tag @s remove _sys_mapadmin_4x8p2"
+            )
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "codebuilder reset @s"
+            )
+            mobs.execute(
+                mobs.playerByName(s),
+                pos(0, 0, 0),
+                "codebuilder navigate @s https://minecraft.makecode.com/?lockedEditor=1#Editor"
+            )
+            player.execute("deop \""+s+"\"")
+        }else{
+            player.execute(
+                "tellraw "+"@s "+"{\"rawtext\":"+"[{\"translate\":"+"\"say.no_find_player\",\"with\":"+"{\"rawtext\":"+"[{\"text\":"+"\"\n\""+"}]}}]}"
+            )  
+        }
+    }
+    /**
+     * 리터러시 클래스룸의 제작자 및 권리 안내를 확인합니다.
+     */
+    //%blockId=literacy_show_credits block="제작 및 권리 안내 보기"
+    export function literacy_show_credits(): void{
+        player.execute("function credits")
     }
 }
