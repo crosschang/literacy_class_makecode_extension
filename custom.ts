@@ -544,7 +544,7 @@ function check_authorized(): boolean {
 /**
  * Custom blocks
  */
-//% weight=100 color=#455A64 icon="\uf0ad" block="교사용 컨트롤 시스탬"
+//% weight=100 color=#455A64 icon="\uf0ad" block="교사용 컨트롤 시스템"
 namespace mapadmin {
     let class_number = ""
     //%blockId=task block="어떤 작업을 시행 하실건가요? "
@@ -607,7 +607,7 @@ namespace mapadmin {
         player.execute("execute " + "@a" + "[tag=examination_" + p + "] ~ ~ ~ " +"function environment/exit_examination")
     }
     /**
-     * 전채 학생의 수업을 종료시킵니다.
+     * 전체 학생의 수업을 종료시킵니다.
      */
     //%blockId=end_class_all block="모든 학생의 수업 종료"
     export function end_class_all(): void {
@@ -664,9 +664,9 @@ namespace mapadmin {
         }
     }
     /**
-     * 특정인에게 관리자 권한을 뺍니다.
+     * 특정인에게 관리자 권한을 제거합니다.
      */
-    //%blockId=take_to_mapadmin block="$s에게 맵관리자 권한 빼기"
+    //%blockId=take_to_mapadmin block="$s에게 맵관리자 권한 제거"
     export function take_to_mapadmin(s: string): void{
         if(is_online_player(s)){
             mobs.execute(
@@ -692,7 +692,7 @@ namespace mapadmin {
             mobs.execute(
                 mobs.playerByName(s),
                 pos(0, 0, 0),
-                "codebuilder navigate @s https://minecraft.makecode.com/?lockedEditor=1#Editor"
+                "codebuilder navigate @s false https://minecraft.makecode.com/?lockedEditor=1#editor"
             )
             player.execute("deop \""+s+"\"")
         }else{
