@@ -548,7 +548,7 @@ function check_authorized(): boolean {
 namespace mapadmin {
     let class_number = ""
     //%blockId=task block="어떤 작업을 시행 하실건가요? "
-    //%handlerStatement=1
+    //%handlerStatement=0
     export function task(handler: () => void): void {
         if (check_authorized()){
             handler()
