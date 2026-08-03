@@ -548,6 +548,7 @@ function check_authorized(): boolean {
 namespace mapadmin {
     let class_number = ""
     //%blockId=task block="어떤 작업을 시행 하실건가요? "
+    //%handlerStatement=1
     export function task(handler: () => void): void {
         if (check_authorized()){
             handler()
@@ -573,7 +574,6 @@ namespace mapadmin {
     /**
      * 특정방의 문을 개방합니다.
      */
-    //%handlerStatement=0
     //%blockId=opendoor_class block="$n째 날 $r방 개방"
     export function opendoor_class(n: RoomNumber, r: Roomtype): void {
         if ((!((n == 1 && r == 2) || (n == 6 && r == 1) || n == 7 || n == 8))){
